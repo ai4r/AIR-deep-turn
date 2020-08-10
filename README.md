@@ -1,4 +1,4 @@
-# deep-turn
+# AIR-deep-turn
 Multimodal turn-taking using deep learning
 
 ## Requirements:
@@ -6,7 +6,7 @@ Multimodal turn-taking using deep learning
 
 Downloads:
 - Download the git file
-  - git clone https://github.com/bettlekor/deep-turn.git
+  - git clone https://github.com/ai4r/AIR-deep-turn.git
 
 ## Train & Evaludation
 Train & evaluation model:
@@ -16,7 +16,7 @@ Train & evaluation model:
   ```
 
   ```
-  python eval_model.py
+  python eval_model.py <feature_path> <label_dataset_path>
   ```
 
 ## Feature Extraction
