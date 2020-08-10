@@ -27,7 +27,7 @@ Features can be extracted by the following command:
   python feature_extraction.py <path_to_folder_where_wave_files_are_saved>
   ```
 
-For each wave file, a feature file is created with the wave file name and an extension of '.npy' under the same folder. A feature file includes a numpy ndarray.
+For each wave file, a feature file is created with the wave file name and an extension of '.npy' under the same folder.
 
 ## E-MIC(Elderly Multimodal Interpersonal Conversation) dataset
 
