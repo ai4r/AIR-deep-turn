@@ -35,7 +35,7 @@ Downloads:
 - Dataset
   - E-MIC Dataset: https://nanum.etri.re.kr:8080/etriPortal/share/view?id=31
 
-## Open Dataset: the HCRC Map Task corpus dataset
+## Open Dataset: The HCRC Map Task Corpus Dataset
 Requirements:
 - nltk: sudo apt-get install python-nltk or sudo pip install -U nltk
 - Sox: sudo apt-get install sox
