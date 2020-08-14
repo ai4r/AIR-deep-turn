@@ -14,7 +14,7 @@ from data_loader import TurnDataset
 
 feat_size = 40  # 13, 40, 52
 hidden_dim = 40 # 32
-input_len = 7 # 20, 5sec
+input_len = 10 # 20, 5sec
 pred_len = 5  # 10, 2.5sec
 epoch_num = 100
 batch_size = 64
