@@ -12,7 +12,7 @@ device = torch.device("cuda" if USE_CUDA else "cpu")
 class TurnTakingLSTM(nn.Module):
     def __init__(self, feat_size, hidden_dim, target_size, batch_size):
         super(TurnTakingLSTM, self).__init__()
-        self.num_hidden_layers = 2 
+        self.num_hidden_layers = 30 #2
         self.batch_size = batch_size
         self.hidden_dim = hidden_dim
         self.lstm = nn.LSTM(feat_size, hidden_dim, num_layers=self.num_hidden_layers, batch_first=True)

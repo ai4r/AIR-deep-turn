@@ -18,7 +18,7 @@ class TurnDataset(Dataset):
         self.annot_list = sorted(glob.glob(annotation_path + "*.csv"))
 
         # train/test split
-        train_size = int(len(self.f_list) * 0.7)
+        train_size = int(len(self.f_list) ) #* 0.7)
         if is_train:  # train set
             self.f_list = self.f_list[0:train_size]
         else:  # test set

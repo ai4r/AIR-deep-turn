@@ -11,26 +11,20 @@ import numpy as np
 
 from model import TurnTakingLSTM
 from data_loader import TurnDataset
-# import visdom
 
-feat_size = 52  # 13, 40, 52
-hidden_dim = 32
-input_len = 20  # 5sec
-pred_len = 10  # 2.5sec
+feat_size = 40  # 13, 40, 52
+hidden_dim = 40 # 32
+input_len = 7 # 20, 5sec
+pred_len = 5  # 10, 2.5sec
 epoch_num = 100
-batch_size = 32 #16, 32, 64
-lr = 0.0001
+batch_size = 64
+lr = 0.001
 
-model_path = './model.pth'
+model_path = 'model/model.pth'
 
 USE_CUDA = torch.cuda.is_available()
 device = torch.device("cuda" if USE_CUDA else "cpu")
-
-# device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-print('device : {}'.format(device))
-
-# vis_train = visdom.Visdom()
-# plot_train = vis_train.line(Y=torch.tensor([0]), X=torch.tensor([0]))
+# print('device : {}'.format(device))
 
 def train(model, train_loader, optimizer, epoch_num):
     print('[Training... ]')
@@ -53,7 +47,7 @@ def train(model, train_loader, optimizer, epoch_num):
             output = model(data)
             # print('target: {}'.format(target))
 
-            loss = loss_function(output, target) #(one-hot, int)
+            loss = loss_function(output, target)
 
             loss.backward()
 
@@ -71,8 +65,6 @@ def train(model, train_loader, optimizer, epoch_num):
         print('[Epoch: {}, loss: {}, took {} sec]'.format(
             epoch+1, losses[epoch], time.time() - start))  #epoch+1
 
-        # visualize, loss-> Y, epoch-> X
-        # vis_train.line(Y=[losses[epoch]], X=np.array([epoch]), win=plot_train, update='append')
 
     #save train model
     torch.save(model.state_dict(), model_path)
@@ -89,7 +81,7 @@ if __name__ == '__main__':
     train_dataset = TurnDataset(feature_folder, label_folder,
                           input_length=input_len, prediction_length=pred_len, is_train=True)
     train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size,
-                              shuffle=True, drop_last=True, num_workers=2)
+                              shuffle=True, drop_last=True, num_workers=2) # num_workers=2
 
     # define test loader
     # test_dataset = TurnDataset(feature_folder, label_folder,
@@ -100,8 +92,11 @@ if __name__ == '__main__':
     # define model
     model = TurnTakingLSTM(feat_size, hidden_dim,
                            pred_len, batch_size).to(device)
+
     loss_function = nn.CrossEntropyLoss()
+
     optimizer = optim.Adam(model.parameters(), lr=lr)
+
     train(model, train_loader, optimizer, epoch_num)
 
     # for epoch in range(1, epoch_num + 1):
