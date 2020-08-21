@@ -1,18 +1,14 @@
-import time
-import sys,os
-
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 USE_CUDA = torch.cuda.is_available()
 device = torch.device("cuda" if USE_CUDA else "cpu")
 
-# a turn-taking lstm model
+# a turn-taking LSTM model
 class TurnTakingLSTM(nn.Module):
     def __init__(self, feat_size, hidden_dim, target_size, batch_size):
         super(TurnTakingLSTM, self).__init__()
-        self.num_hidden_layers = 30 #2
+        self.num_hidden_layers = 2
         self.batch_size = batch_size
         self.hidden_dim = hidden_dim
         self.lstm = nn.LSTM(feat_size, hidden_dim, num_layers=self.num_hidden_layers, batch_first=True)
